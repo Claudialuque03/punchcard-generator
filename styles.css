@@ -1,0 +1,377 @@
+/* Fonts */
+@font-face {
+    font-family: 'bianzhidai_noBG-Base';
+    src: url('assets/fonts/bianzhidai_noBG-Base.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('assets/fonts/SpaceMono-Regular.ttf') format('truetype');
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: #f8f8f8;
+    color: #000000;
+    line-height: 1.6;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 30px;
+}
+
+/* Header Styles */
+header {
+    text-align: left;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000;
+}
+
+header h1 {
+    font-family: 'bianzhidai_noBG-Base', sans-serif;
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    max-width: 800px;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #000000;
+    max-width: 600px;
+}
+
+/* Main Content */
+main {
+    padding: 0;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 60px;
+    border-top: 1px solid #000;
+    padding-top: 30px;
+}
+
+.form-group:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.form-group h2 {
+    font-family: 'Space Mono', serif;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #000000;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+input[type="file"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #000000;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.4;
+}
+
+/* Align file input and textarea side-by-side */
+.config-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+/* Hint Text */
+.hint {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Button Styles */
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+button,
+.button {
+    padding: 15px 30px;
+    background-color: #f8f8f8;
+    color: #000000;
+    border: 2px solid #000000;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button.primary,
+.button.primary {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+button:hover,
+.button:hover {
+    background-color: #eeeeee;
+}
+
+button.primary:hover,
+.button.primary:hover {
+    background-color: #333333;
+}
+
+/* Info Section */
+.info-section {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 2px solid #000;
+}
+
+.info-section h2 {
+    font-family: 'Space Mono', serif;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+.info-section ol {
+    padding-left: 30px;
+    margin-bottom: 30px;
+    list-style-type: decimal;
+}
+
+.info-section li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.info-section pre {
+    background-color: #ffffff;
+    padding: 25px;
+    border: 2px solid #000;
+    overflow-x: auto;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    margin-top: 25px;
+    line-height: 1.6;
+}
+
+/* Messages */
+.messages {
+    margin-bottom: 40px;
+}
+
+.message {
+    padding: 20px;
+    border: 2px solid;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.message.error {
+    background-color: #ffffff;
+    color: #c00;
+    border-color: #c00;
+}
+
+.message.success {
+    background-color: #ffffff;
+    color: #060;
+    border-color: #060;
+}
+
+/* Result Page */
+.result-page .preview-container {
+    overflow-x: auto;
+    margin-bottom: 40px;
+    padding: 30px;
+    border: 2px solid #000000;
+    background-color: #ffffff;
+}
+
+.result-page .svg-container {
+    text-align: center;
+}
+
+.result-page .svg-container svg {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #eee;
+    padding: 10px;
+}
+
+.result-page .actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+/* Info Box */
+.info-box {
+    background-color: #f8f8f8;
+    border: 2px solid #000000;
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.info-box h3 {
+    font-family: 'Space Mono', serif;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #000000;
+    font-weight: 700;
+}
+
+.info-box ul {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.info-box li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.info-box p {
+    margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    border-top: 2px solid #000;
+    margin-top: 60px;
+    color: #000;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pattern-results {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #000;
+}
+
+.pattern-container table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.pattern-container td {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 1px solid #eee;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8em;
+}
+
+.pattern-container .filled {
+    background-color: #000;
+    color: white;
+}
+
+.flash-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid;
+    cursor: pointer;
+}
+
+.flash-message.error {
+    background-color: #fff3f3;
+    border-color: #ff0000;
+    color: #cc0000;
+}
+
+.flash-message.success {
+    background-color: #f3fff3;
+    border-color: #00cc00;
+    color: #006600;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 30px 20px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .form-group h2,
+    .info-section h2 {
+        font-size: 1.6rem;
+    }
+
+    .config-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .buttons,
+    .result-page .actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    button,
+    .button {
+        width: 100%;
+    }
+}
