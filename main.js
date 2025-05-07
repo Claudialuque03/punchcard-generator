@@ -103,7 +103,6 @@ function generateSVG(pattern, machineStitches = 24) {
     const height = (numRows - 1) * ROW_SPACING + 2 * MARGIN; // Ej: 10 filas → 9*5 + 26 = 71 mm
 
     // ... (resto del código para generar SVG)
-}
     let svg = [
         `<svg xmlns="http://www.w3.org/2000/svg"`,
         `width="${width}mm" height="${height}mm"`,
