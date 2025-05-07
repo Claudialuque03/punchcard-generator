@@ -86,6 +86,8 @@ function generateSVG(pattern, machineStitches = 24) {
     const SPACING = 4.5;              // mm entre centros (agujeros del patrón)
     const SPACING_FIXED_HOLE = 5.5;    // mm entre centros (patrón ↔ fijos)
     const MARGIN = 13;                 // mm en los bordes
+    const HOLE_DIAMETER = 3.5;  // Añadir
+    const FIXED_HOLE_DIAMETER = 3;
 
     // Configuración vertical
     const ROW_SPACING = 5;             // mm entre filas (centro a centro)
@@ -115,9 +117,15 @@ function generateSVG(pattern, machineStitches = 24) {
     pattern.forEach((row, rowIdx) => {
         // Add holes for this row
         for(let colIdx = -1; colIdx <= numCols; colIdx++) {
-            const cx = MARGIN + (colIdx + 1) * SPACING;
-            const cy = MARGIN + rowIdx * (SPACING +1); // TODO: Cambiar este +1
-            
+            let cx;
+            if (colIdx === -1) {  // Agujero izquierdo
+              cx = MARGIN;
+            } else if (colIdx === numCols) {  // Agujero derecho
+              cx = MARGIN + (numCols - 1) * SPACING + SPACING_FIXED_HOLE;
+            } else {  // Patrón
+              cx = MARGIN + SPACING_FIXED_HOLE + colIdx * SPACING;
+            }
+            const cy = MARGIN + rowIdx * ROW_SPACING;            
             if(colIdx === -1 || colIdx === numCols) {
                 // Fixed position holes (0 and 25)
                 svg += [
