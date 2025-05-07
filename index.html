@@ -49,14 +49,24 @@
                 </form>
             </section>
 
-            <section class="pattern-results" id="resultsSection" style="display: none;">
-                <div class="pattern-details">
-                    <h2>Generated Pattern</h2>
-                    <div class="settings-summary">
-                        <h3>Pattern Settings</h3>
-                        <ul id="patternSettings"></ul>
-                    </div>
-                </div>
+           <section class="pattern-results" id="resultsSection" style="display: none;">
+    <div class="pattern-details">
+        <h2>Generated Pattern</h2>
+        <div class="settings-summary">
+            <h3>Pattern Settings</h3>
+            <ul id="patternSettings"></ul>
+        </div>
+        
+        <!-- Contenedor para mostrar el patrón (requerido por displayResults()) -->
+        <div id="patternContainer" class="pattern-grid"></div>
+        
+        <!-- Botones de descarga (referenciados en el JavaScript) -->
+        <div class="download-buttons">
+            <button onclick="downloadSVG()" class="btn-download">Download SVG</button>
+            <button onclick="downloadText()" class="btn-download">Download Text</button>
+        </div>
+    </div>
+</section>
 
                 <div class="pattern-visualization">
                     <div class="pattern-container" id="patternContainer"></div>
