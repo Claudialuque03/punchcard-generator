@@ -82,19 +82,30 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
 }
 
 function generateSVG(pattern, machineStitches = 24) {
-    // Configuration matching your Python code
-    const HOLE_DIAMETER = 3.5;  // mm for pattern holes (X)
-    const FIXED_HOLE_DIAMETER = 3;  // mm for fixed holes (0 and 25)
-    const SPACING = 1 + HOLE_DIAMETER;  // mm between holes
-    const MARGIN = 12;  // mm
+    // Diámetros de los agujeros
+    const HOLE_DIAMETER = 3.5;        // mm (agujeros del patrón)
+    const FIXED_HOLE_DIAMETER = 3;    // mm (agujeros fijos 0 y 25)
     
-    const numCols = machineStitches;
-    const numFixed = 2;  // Positions 0 and 25
-    const totalCols = numCols + numFixed;
-    const numRows = pattern.length;
+    // Espacios edge-to-edge (definidos por el usuario)
+    const SPACING_EDGE_TO_EDGE = 1;   // 1 mm entre agujeros del patrón
+    const SPACING_FIXED_EDGE = 2;     // 2 mm entre patrón y fijos
     
-    // Calculate dimensions
-    const width = (totalCols - 1) * SPACING + 2 * MARGIN;
+    // Cálculo de distancias entre centros
+    const SPACING = SPACING_EDGE_TO_EDGE + HOLE_DIAMETER;             // 4.5 mm
+    const SPACING_FIXED_HOLE = (HOLE_DIAMETER/2 + FIXED_HOLE_DIAMETER/2) + SPACING_FIXED_EDGE; // 5.25 mm
+    
+    // Margen y dimensiones
+    const MARGIN = 12;                // mm
+    const numCols = machineStitches;  // 24
+    const totalCols = numCols + 2;    // 24 + 2 fijos = 26
+
+    // Cálculo del ancho total
+    const spacesBetweenPattern = (numCols - 1) * SPACING;       // (24-1)*4.5 = 103.5 mm
+    const spacesToFixedHoles = 2 * SPACING_FIXED_HOLE;          // 2*5.25 = 10.5 mm
+    const width = spacesBetweenPattern + spacesToFixedHoles + 2 * MARGIN; // 103.5 + 10.5 + 24 = 138 mm
+
+    // ... (resto del código)
+}
     const height = (numRows - 1) * (SPACING + 1) + 2 * MARGIN; //TODO: Cambiar este +1
     
     let svg = [
