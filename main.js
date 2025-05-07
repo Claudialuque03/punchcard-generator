@@ -83,7 +83,7 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
 
 function generateSVG(pattern, machineStitches = 24) {
     // Configuration matching your Python code
-    const HOLE_DIAMETER = 3.5;  // mm for pattern holes (X)
+    const HOLE_DIAMETER = 3;  // mm for pattern holes (X)
     const FIXED_HOLE_DIAMETER = 3;  // mm for fixed holes (0 and 25)
     const SPACING = 1 + HOLE_DIAMETER;  // mm between holes
     const MARGIN = 5;  // mm
@@ -95,7 +95,7 @@ function generateSVG(pattern, machineStitches = 24) {
     
     // Calculate dimensions
     const width = (totalCols - 1) * SPACING + 2 * MARGIN;
-    const height = (numRows - 1) * SPACING + 2 * MARGIN;
+    const height = (numRows - 1) * (SPACING + 1) + 2 * MARGIN; //TODO: Cambiar este +1
     
     let svg = [
         `<svg xmlns="http://www.w3.org/2000/svg"`,
@@ -110,7 +110,7 @@ function generateSVG(pattern, machineStitches = 24) {
         // Add holes for this row
         for(let colIdx = -1; colIdx <= numCols; colIdx++) {
             const cx = MARGIN + (colIdx + 1) * SPACING;
-            const cy = MARGIN + rowIdx * SPACING;
+            const cy = MARGIN + rowIdx * (SPACING +1); // TODO: Cambiar este +1
             
             if(colIdx === -1 || colIdx === numCols) {
                 // Fixed position holes (0 and 25)
