@@ -95,7 +95,7 @@ function generateSVG(pattern, machineStitches = 24) {
     const SPACING_FIXED_HOLE = (HOLE_DIAMETER/2 + FIXED_HOLE_DIAMETER/2) + SPACING_FIXED_EDGE; // 5.25 mm
     
     // Margen y dimensiones
-    const MARGIN = 12;                // mm
+    const MARGIN = 13,5;                // mm
     const numCols = machineStitches;  // 24
     const totalCols = numCols + 2;    // 24 + 2 fijos = 26
 
