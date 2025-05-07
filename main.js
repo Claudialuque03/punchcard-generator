@@ -82,66 +82,60 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
 }
 
 function generateSVG(pattern, machineStitches = 24) {
-    // Configuración horizontal
-    const SPACING = 4.5;              // mm entre centros (agujeros del patrón)
-    const SPACING_FIXED_HOLE = 5.5;    // mm entre centros (patrón ↔ fijos)
-    const MARGIN = 13;                 // mm en los bordes
-    const HOLE_DIAMETER = 3.5;  // Añadir
+    // Diámetros 
+    const HOLE_DIAMETER = 3.5;
     const FIXED_HOLE_DIAMETER = 3;
 
-    // Configuración vertical
-    const ROW_SPACING = 5;             // mm entre filas (centro a centro)
+    // Configuración
+    const SPACING = 4.5;              // Entre agujeros del patrón
+    const SPACING_FIXED_HOLE = 5.5;   // Entre patrón y fijos
+    const MARGIN = 13;                // Margen externo
+    const ROW_SPACING = 5;            // Entre filas
 
-    // Cálculos
     const numCols = machineStitches;
     const numRows = pattern.length;
 
-    // Ancho total
-    const spacesBetweenPattern = (numCols - 1) * SPACING;  // 23 * 4.5 = 103.5 mm
-    const spacesToFixed = 2 * SPACING_FIXED_HOLE;          // 2 * 5.5 = 11 mm
-    const width = spacesBetweenPattern + spacesToFixed + 2 * MARGIN; // 103.5 + 11 + 26 = 140.5 mm
+    // Ancho total (correcto)
+    const width = MARGIN * 2 + SPACING_FIXED_HOLE * 2 + (numCols - 1) * SPACING;
 
     // Alto total
-    const height = (numRows - 1) * ROW_SPACING + 2 * MARGIN; // Ej: 10 filas → 9*5 + 26 = 71 mm
+    const height = (numRows - 1) * ROW_SPACING + 2 * MARGIN;
 
-    // ... (resto del código para generar SVG)
     let svg = [
         `<svg xmlns="http://www.w3.org/2000/svg"`,
         `width="${width}mm" height="${height}mm"`,
         `viewBox="0 0 ${width} ${height}">`,
-        // Add border rectangle
         `<rect x="0" y="0" width="${width}" height="${height}"`,
-        `style="fill:none;stroke:black;stroke-width:0.2"/>`
+        `fill="none" stroke="black" stroke-width="0.2"/>`
     ].join('\n');
 
     pattern.forEach((row, rowIdx) => {
-        // Add holes for this row
-        for(let colIdx = -1; colIdx <= numCols; colIdx++) {
-            let cx;
-            if (colIdx === -1) {  // Agujero izquierdo
-              cx = MARGIN;
-            } else if (colIdx === numCols) {  // Agujero derecho
-              cx = MARGIN + (numCols - 1) * SPACING + SPACING_FIXED_HOLE;
-            } else {  // Patrón
-              cx = MARGIN + SPACING_FIXED_HOLE + colIdx * SPACING;
-            }
-            const cy = MARGIN + rowIdx * ROW_SPACING;            
-            if(colIdx === -1 || colIdx === numCols) {
-                // Fixed position holes (0 and 25)
-                svg += [
-                    `<circle cx="${cx}" cy="${cy}"`,
-                    `r="${FIXED_HOLE_DIAMETER/2}"`,
-                    `stroke="black" stroke-width="0.2" fill="none"/>`
-                ].join(' ');
-            } else if(colIdx < row.length) {
-                // Pattern holes (X marks)
-                if(row[colIdx].toUpperCase() === 'X') {
-                    svg += [
-                        `<circle cx="${cx}" cy="${cy}"`,
-                        `r="${HOLE_DIAMETER/2}"`,
-                        `stroke="black" stroke-width="0.2" fill="none"/>`
-                    ].join(' ');
-                }
+        const cy = MARGIN + rowIdx * ROW_SPACING;
+
+        // Agujero fijo izquierdo (posición correcta)
+        svg += `
+            <circle cx="${MARGIN}" cy="${cy}" 
+                r="${FIXED_HOLE_DIAMETER/2}" 
+                fill="none" stroke="black" stroke-width="0.2"/>
+        `;
+
+        // Agujero fijo derecho (posición CORREGIDA)
+        const rightFixedHoleX = MARGIN + SPACING_FIXED_HOLE + (numCols - 1) * SPACING + SPACING_FIXED_HOLE;
+        svg += `
+            <circle cx="${rightFixedHoleX}" cy="${cy}" 
+                r="${FIXED_HOLE_DIAMETER/2}" 
+                fill="none" stroke="black" stroke-width="0.2"/>
+        `;
+
+        // Agujeros del patrón
+        for (let colIdx = 0; colIdx < numCols; colIdx++) {
+            if (row[colIdx] === 'X') {
+                const cx = MARGIN + SPACING_FIXED_HOLE + colIdx * SPACING;
+                svg += `
+                    <circle cx="${cx}" cy="${cy}" 
+                        r="${HOLE_DIAMETER/2}" 
+                        fill="none" stroke="black" stroke-width="0.2"/>
+                `;
             }
         }
     });
