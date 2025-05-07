@@ -82,32 +82,28 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
 }
 
 function generateSVG(pattern, machineStitches = 24) {
-    // Diámetros de los agujeros
-    const HOLE_DIAMETER = 3.5;        // mm (agujeros del patrón)
-    const FIXED_HOLE_DIAMETER = 3;    // mm (agujeros fijos 0 y 25)
-    
-    // Espacios edge-to-edge (definidos por el usuario)
-    const SPACING_EDGE_TO_EDGE = 1;   // 1 mm entre agujeros del patrón
-    const SPACING_FIXED_EDGE = 2;     // 2 mm entre patrón y fijos
-    
-    // Cálculo de distancias entre centros
-    const SPACING = SPACING_EDGE_TO_EDGE + HOLE_DIAMETER;             // 4.5 mm
-    const SPACING_FIXED_HOLE = (HOLE_DIAMETER/2 + FIXED_HOLE_DIAMETER/2) + SPACING_FIXED_EDGE; // 5.25 mm
-    
-    // Margen y dimensiones
-    const MARGIN = 13,5;                // mm
-    const numCols = machineStitches;  // 24
-    const totalCols = numCols + 2;    // 24 + 2 fijos = 26
+    // Configuración horizontal
+    const SPACING = 4.5;              // mm entre centros (agujeros del patrón)
+    const SPACING_FIXED_HOLE = 5.5;    // mm entre centros (patrón ↔ fijos)
+    const MARGIN = 13;                 // mm en los bordes
 
-    // Cálculo del ancho total
-    const spacesBetweenPattern = (numCols - 1) * SPACING;       // (24-1)*4.5 = 103.5 mm
-    const spacesToFixedHoles = 2 * SPACING_FIXED_HOLE;          // 2*5.25 = 10.5 mm
-    const width = spacesBetweenPattern + spacesToFixedHoles + 2 * MARGIN; // 103.5 + 10.5 + 24 = 138 mm
+    // Configuración vertical
+    const ROW_SPACING = 5;             // mm entre filas (centro a centro)
 
-    // ... (resto del código)
+    // Cálculos
+    const numCols = machineStitches;
+    const numRows = pattern.length;
+
+    // Ancho total
+    const spacesBetweenPattern = (numCols - 1) * SPACING;  // 23 * 4.5 = 103.5 mm
+    const spacesToFixed = 2 * SPACING_FIXED_HOLE;          // 2 * 5.5 = 11 mm
+    const width = spacesBetweenPattern + spacesToFixed + 2 * MARGIN; // 103.5 + 11 + 26 = 140.5 mm
+
+    // Alto total
+    const height = (numRows - 1) * ROW_SPACING + 2 * MARGIN; // Ej: 10 filas → 9*5 + 26 = 71 mm
+
+    // ... (resto del código para generar SVG)
 }
-    const height = (numRows - 1) * (SPACING + 1) + 2 * MARGIN; //TODO: Cambiar este +1
-    
     let svg = [
         `<svg xmlns="http://www.w3.org/2000/svg"`,
         `width="${width}mm" height="${height}mm"`,
