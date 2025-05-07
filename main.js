@@ -86,7 +86,7 @@ function generateSVG(pattern, machineStitches = 24) {
     const HOLE_DIAMETER = 3;  // mm for pattern holes (X)
     const FIXED_HOLE_DIAMETER = 3;  // mm for fixed holes (0 and 25)
     const SPACING = 1 + HOLE_DIAMETER;  // mm between holes
-    const MARGIN = 5;  // mm
+    const MARGIN = 12;  // mm
     
     const numCols = machineStitches;
     const numFixed = 2;  // Positions 0 and 25
