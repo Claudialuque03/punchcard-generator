@@ -83,7 +83,7 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
 
 function generateSVG(pattern, machineStitches = 24) {
     // Configuration matching your Python code
-    const HOLE_DIAMETER = 3;  // mm for pattern holes (X)
+    const HOLE_DIAMETER = 3.5;  // mm for pattern holes (X)
     const FIXED_HOLE_DIAMETER = 3;  // mm for fixed holes (0 and 25)
     const SPACING = 1 + HOLE_DIAMETER;  // mm between holes
     const MARGIN = 12;  // mm
