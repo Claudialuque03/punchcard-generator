@@ -87,10 +87,10 @@ function generateSVG(pattern, machineStitches = 24) {
     const FIXED_HOLE_DIAMETER = 3;
 
     // Configuración
-    const SPACING = 4.5;              // Entre agujeros del patrón
-    const SPACING_FIXED_HOLE = 5.5;   // Entre patrón y fijos
-    const MARGIN = 13;                // Margen externo
-    const ROW_SPACING = 5;            // Entre filas
+    const SPACING = 5.43;              // Entre agujeros del patrón
+    const SPACING_FIXED_HOLE = 12.822;   // Entre patrón y fijos
+    const MARGIN = 12.17;                // Margen externo
+    const ROW_SPACING = 5.02;            // Entre filas
 
     const numCols = machineStitches;
     const numRows = pattern.length;
