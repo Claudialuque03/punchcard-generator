@@ -83,22 +83,20 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
 
 function generateSVG(pattern, machineStitches = 24) {
     // Diámetros 
-    const HOLE_DIAMETER = 3.5;
-    const FIXED_HOLE_DIAMETER = 3;
+    const HOLE_DIAMETER = 2.999;
+    const FIXED_HOLE_DIAMETER = 2.611;
 
     // Configuración
-    const SPACING = 4.5;              // Entre agujeros del patrón
-    const SPACING_FIXED_HOLE = 5.5;   // Entre patrón y fijos
-    const MARGIN = 13;                // Margen externo
-    const ROW_SPACING = 5;            // Entre filas
+    const SPACING = 4.41;              // Entre agujeros del patrón
+    const SPACING_FIXED_HOLE = 5.63;   // Entre patrón y fijos
+    const MARGIN = 13.86;                // Margen externo
+    const ROW_SPACING = 5.98;            // Entre filas
 
     const numCols = machineStitches;
     const numRows = pattern.length;
 
-    // Ancho total (correcto)
+    // Cálculos dimensionales
     const width = MARGIN * 2 + SPACING_FIXED_HOLE * 2 + (numCols - 1) * SPACING;
-
-    // Alto total
     const height = (numRows - 1) * ROW_SPACING + 2 * MARGIN;
 
     let svg = [
@@ -112,20 +110,18 @@ function generateSVG(pattern, machineStitches = 24) {
     pattern.forEach((row, rowIdx) => {
         const cy = MARGIN + rowIdx * ROW_SPACING;
 
-        // Agujero fijo izquierdo (posición correcta)
+        // Agujeros fijos izquierdos
         svg += `
             <circle cx="${MARGIN}" cy="${cy}" 
                 r="${FIXED_HOLE_DIAMETER/2}" 
-                fill="none" stroke="black" stroke-width="0.001"/>
-        `;
+                fill="none" stroke="black" stroke-width="0.2"/>`;
 
-        // Agujero fijo derecho (posición CORREGIDA)
+        // Agujeros fijos derechos
         const rightFixedHoleX = MARGIN + SPACING_FIXED_HOLE + (numCols - 1) * SPACING + SPACING_FIXED_HOLE;
         svg += `
             <circle cx="${rightFixedHoleX}" cy="${cy}" 
                 r="${FIXED_HOLE_DIAMETER/2}" 
-                fill="none" stroke="black" stroke-width="0.2"/>
-        `;
+                fill="none" stroke="black" stroke-width="0.2"/>`;
 
         // Agujeros del patrón
         for (let colIdx = 0; colIdx < numCols; colIdx++) {
@@ -134,8 +130,7 @@ function generateSVG(pattern, machineStitches = 24) {
                 svg += `
                     <circle cx="${cx}" cy="${cy}" 
                         r="${HOLE_DIAMETER/2}" 
-                        fill="none" stroke="black" stroke-width="0.2"/>
-                `;
+                        fill="none" stroke="black" stroke-width="0.2"/>`;
             }
         }
     });
@@ -143,7 +138,6 @@ function generateSVG(pattern, machineStitches = 24) {
     svg += '</svg>';
     return svg;
 }
-
 function downloadSVG() {
     if(!currentPattern) return;
     
