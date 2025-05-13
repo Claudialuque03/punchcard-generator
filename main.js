@@ -116,7 +116,7 @@ function generateSVG(pattern, machineStitches = 24) {
         svg += `
             <circle cx="${MARGIN}" cy="${cy}" 
                 r="${FIXED_HOLE_DIAMETER/2}" 
-                fill="none" stroke="black" stroke-width="0.2"/>
+                fill="none" stroke="black" stroke-width="0.001"/>
         `;
 
         // Agujero fijo derecho (posición CORREGIDA)
