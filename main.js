@@ -104,7 +104,7 @@ function generateSVG(pattern, machineStitches = 24) {
 
     // *** CORRECCIÓN 2: Calcular altura incluyendo diámetros ***
     const maxHoleHeight = Math.max(HOLE_DIAMETER, FIXED_HOLE_DIAMETER);
-    const height = (numRows - 1) * ROW_SPACING + maxHoleHeight + 2 * MARGIN;
+    const height = (numRows - 1) * ROW_SPACING + maxHoleHeight;
 
     let svg = [
         `<svg xmlns="http://www.w3.org/2000/svg"`,
