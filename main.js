@@ -115,8 +115,8 @@ function generateSVG(pattern, machineStitches = 24) {
     ].join('\n');
 
     pattern.forEach((row, rowIdx) => {
-        // *** CORRECCIÓN 3: Alineación vertical precisa ***
-        const topReference = MARGIN + rowIdx * ROW_SPACING;
+        // Posicionamiento vertical ajustado sin márgenes
+        const topReference = rowIdx * ROW_SPACING;
         const fixedCy = topReference + FIXED_HOLE_DIAMETER/2;
         const patternCy = topReference + HOLE_DIAMETER/2;
 
