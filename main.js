@@ -87,11 +87,11 @@ function generateSVG(pattern, machineStitches = 24) {
     const FIXED_HOLE_DIAMETER = 2.611;
 
     // Configuración
-    const SPACING = 4.41;
+    const SPACING = 4.32;
     const SPACING_FIXED_HOLE_LEFT = 5.63;
     const SPACING_FIXED_HOLE_RIGHT = 7.18;
     const MARGIN = 13.86;
-    const ROW_SPACING = 4.98;
+    const ROW_SPACING = 4.76;
 
     const numCols = machineStitches;
     const numRows = pattern.length;
