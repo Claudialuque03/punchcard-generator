@@ -83,11 +83,11 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
 
 function generateSVG(pattern, machineStitches = 24) {
     // Diámetros 
-    const HOLE_DIAMETER = 3.3;
+    const HOLE_DIAMETER = 3.8;
     const FIXED_HOLE_DIAMETER = 2.611;
 
     // Configuración
-    const SPACING = 4.32;
+    const SPACING = 4.36;
     const SPACING_FIXED_HOLE_LEFT = 5.63;
     const SPACING_FIXED_HOLE_RIGHT = 7.18;
     const MARGIN = 13.86;
