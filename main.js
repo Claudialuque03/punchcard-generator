@@ -80,7 +80,6 @@ function displayResults(pattern, stitchCount, rows, threshold, invert) {
     });
     container.appendChild(table);
 }
-
 function generateSVG(pattern, machineStitches = 24) {
     // Diámetros 
     const HOLE_DIAMETER = 3;
@@ -96,13 +95,12 @@ function generateSVG(pattern, machineStitches = 24) {
     const numCols = machineStitches;
     const numRows = pattern.length;
 
-    // *** CORRECCIÓN 1: Definir width antes de usarlo en el SVG ***
+    // Calcular dimensiones del SVG
     const width = MARGIN * 2 
                 + SPACING_FIXED_HOLE_LEFT 
                 + SPACING_FIXED_HOLE_RIGHT 
                 + (numCols - 1) * SPACING;
 
-    // *** CORRECCIÓN 2: Calcular altura incluyendo diámetros ***
     const maxHoleHeight = Math.max(HOLE_DIAMETER, FIXED_HOLE_DIAMETER);
     const height = (numRows - 1) * ROW_SPACING + maxHoleHeight + 2 * MARGIN;
 
@@ -115,16 +113,15 @@ function generateSVG(pattern, machineStitches = 24) {
     ].join('\n');
 
     pattern.forEach((row, rowIdx) => {
-        // *** CORRECCIÓN 3: Alineación vertical precisa ***
         const topReference = MARGIN + rowIdx * ROW_SPACING;
-        const fixedCy = topReference + FIXED_HOLE_DIAMETER/2;
-        const patternCy = topReference + HOLE_DIAMETER/2;
+        const fixedCy = topReference + FIXED_HOLE_DIAMETER / 2;
+        const patternCy = topReference + HOLE_DIAMETER / 2;
 
         // Agujero fijo izquierdo
         svg += `
             <circle cx="${MARGIN}" cy="${fixedCy}" 
-                r="${FIXED_HOLE_DIAMETER/2}" 
-                fill="none" stroke="black" stroke-width="0.2"/>`;
+                r="${FIXED_HOLE_DIAMETER / 2}" 
+                fill="black" stroke="none"/>`;
 
         // Agujero fijo derecho
         const rightX = MARGIN 
@@ -133,8 +130,8 @@ function generateSVG(pattern, machineStitches = 24) {
                      + SPACING_FIXED_HOLE_RIGHT;
         svg += `
             <circle cx="${rightX}" cy="${fixedCy}" 
-                r="${FIXED_HOLE_DIAMETER/2}" 
-                fill="none" stroke="black" stroke-width="0.2"/>`;
+                r="${FIXED_HOLE_DIAMETER / 2}" 
+                fill="black" stroke="none"/>`;
 
         // Agujeros del patrón
         for (let colIdx = 0; colIdx < numCols; colIdx++) {
@@ -144,8 +141,8 @@ function generateSVG(pattern, machineStitches = 24) {
                          + colIdx * SPACING;
                 svg += `
                     <circle cx="${cx}" cy="${patternCy}" 
-                        r="${HOLE_DIAMETER/2}" 
-                        fill="none" stroke="black" stroke-width="0.2"/>`;
+                        r="${HOLE_DIAMETER / 2}" 
+                        fill="black" stroke="none"/>`;
             }
         }
     });
@@ -153,6 +150,7 @@ function generateSVG(pattern, machineStitches = 24) {
     svg += '</svg>';
     return svg;
 }
+
 function downloadSVG() {
     if(!currentPattern) return;
     
